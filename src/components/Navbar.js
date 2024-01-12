@@ -37,6 +37,31 @@ const streamingData = [
   },
   // Add more data as needed
 ];
+const StreamingCard = ({ item }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <Grid item xs={12} sm={6} md={4} key={item.type}>
+      <Card
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        sx={{
+          transform: isHovered ? "scale(1.1)" : "scale(1)",
+          transition: "transform 0.3s ease-in-out",
+        }}
+      >
+        <CardContent>
+          <Typography variant="h6" color="primary">
+            {item.type}
+          </Typography>
+          <Typography variant="h5" sx={{ marginTop: 1, marginBottom: 2 }}>
+            {item.title}
+          </Typography>
+          <Typography variant="body2">{item.description}</Typography>
+        </CardContent>
+      </Card>
+    </Grid>
+  );
+};
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -190,23 +215,8 @@ function ResponsiveAppBar() {
           Explore Our Streaming Platform
         </Typography>
         <Grid container spacing={3}>
-          {streamingData.map((item, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h6" color="primary">
-                    {item.type}
-                  </Typography>
-                  <Typography
-                    variant="h5"
-                    sx={{ marginTop: 1, marginBottom: 2 }}
-                  >
-                    {item.title}
-                  </Typography>
-                  <Typography variant="body2">{item.description}</Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+          {streamingData.map((item) => (
+            <StreamingCard key={item.type} item={item} />
           ))}
         </Grid>
       </Paper>
