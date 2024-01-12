@@ -152,7 +152,7 @@ function ResponsiveAppBar() {
             >
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center" sx={{ color: "white" }}>
+                  <Typography textAlign="center" sx={{ color: "Black" }}>
                     {setting}
                   </Typography>
                 </MenuItem>
